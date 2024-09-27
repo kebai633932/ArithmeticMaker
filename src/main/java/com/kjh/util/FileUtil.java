@@ -82,7 +82,6 @@ public class FileUtil {
             System.out.println("必须提供两个输出流：一个用于题目，一个用于答案。");
             return;
         }
-
         try {
             // 输出题目到第一个PrintStream
             streams[0].println(index + ". " + problem[0]); // 输出题目
@@ -92,6 +91,4 @@ public class FileUtil {
             System.out.println("数组越界。"); // 数组越界异常处理
         }
     }
-
 }
-
