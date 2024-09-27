@@ -10,7 +10,5 @@ public class FractionTest {
         for (int i = 0; i < 100; i++) {
             createFraction.createFractionProblem(100);
         }
-
-        //System.out.println(createFraction.shamToProperFraction(14, 6));
     }
 }

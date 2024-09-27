@@ -86,14 +86,13 @@ public class ProducerController {
 
             for (int i = 1; i <= numberOfProblems; i++) {
                 boolean isFraction = random.nextBoolean(); // 返回true或false
-                String[] problem;
+                String[] problemAndAns;
                 if (isFraction) {
-                    problem = createFraction.createFractionProblem(maxRange); // 生成分数题目
+                    problemAndAns = createFraction.createFractionProblem(maxRange); // 生成分数题目
                 } else {
-                    problem = createInteger.createIntegerProblem(maxRange); // 生成整数题目
+                    problemAndAns = createInteger.createIntegerProblem(maxRange); // 生成整数题目
                 }
-
-                fileUtil.outputFile(i, problem, exercisesPrintStream, answersPrintStream); // 输出题目和答案
+                fileUtil.outputFile(i, problemAndAns, exercisesPrintStream, answersPrintStream); // 输出题目和答案
             }
             System.out.println("题目和与之对应的答案文件创建成功。"); // 成功提示
         }
