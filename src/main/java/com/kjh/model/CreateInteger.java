@@ -64,36 +64,36 @@ public class CreateInteger {
      */
     public String stitchingProblem(int operatorCount, int[] operand, int[] operatorIndex) {
         int bracketForm = new Random().nextInt(2); // 随机决定是否使用括号
-        StringBuilder problem = new StringBuilder(); // 用于拼接公式
+        StringBuilder expression = new StringBuilder(); // 用于拼接公式
         // 根据操作符数量拼接表达式
         switch (operatorCount) {
             case 1:// a+b型
-                problem.append(String.format("%s %s %s =", operand[0], OPERATOR[operatorIndex[0]], operand[1]));
+                expression.append(String.format("%s %s %s =", operand[0], OPERATOR[operatorIndex[0]], operand[1]));
                 break;
             case 2: {// a+b+c 型
                 if (bracketForm == 0) {
-                    problem.append(String.format("%s %s %s %s %s =",operand[0],OPERATOR[operatorIndex[0]],
+                    expression.append(String.format("%s %s %s %s %s =",operand[0],OPERATOR[operatorIndex[0]],
                             operand[1],OPERATOR[operatorIndex[1]],operand[2]));
 
                 } else {//a+(b+c)型
-                    problem.append(String.format("%s %s ( %s %s %s ) =",operand[0],OPERATOR[operatorIndex[0]],
+                    expression.append(String.format("%s %s ( %s %s %s ) =",operand[0],OPERATOR[operatorIndex[0]],
                             operand[1],OPERATOR[operatorIndex[1]],operand[2]));
                 }
                 break;
             }
-            case 3: {
-                if (bracketForm == 0) {//a+((b+c)-d)型
-                    problem.append(String.format("%s %s (( %s %s %s ) %s %s) =",operand[0],OPERATOR[operatorIndex[0]],
+            case 3: {//a+((b+c)-d)型
+                if (bracketForm == 0) {
+                    expression.append(String.format("%s %s (( %s %s %s ) %s %s) =",operand[0],OPERATOR[operatorIndex[0]],
                             operand[1],OPERATOR[operatorIndex[1]],operand[2],OPERATOR[operatorIndex[2]],operand[3]));
                 }
                 else {//(a+b)+(c+d)型
-                    problem.append(String.format("( %s %s %s ) %s ( %s %s %s ) =",operand[0],OPERATOR[operatorIndex[0]],
+                    expression.append(String.format("( %s %s %s ) %s ( %s %s %s ) =",operand[0],OPERATOR[operatorIndex[0]],
                             operand[1],OPERATOR[operatorIndex[1]],operand[2],OPERATOR[operatorIndex[2]],operand[3]));
                 }
                 break;
             }//可添加更多类型，如a+b+c+d型,a+(b+c)-d型等等
         }
-        return problem.toString(); // 返回拼接的数学表达式
+        return expression.toString(); // 返回拼接的数学表达式
     }
 
     /**

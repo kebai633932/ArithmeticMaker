@@ -27,7 +27,7 @@ public class CreateFraction {
         int y = coprimeNumber1[1]; // 分母
 
         // 将假分数转化为真分数字符串
-        StringBuilder problem = new StringBuilder(math.shamToProperFraction(x, y));
+        StringBuilder expression = new StringBuilder(math.shamToProperFraction(x, y));
 
         // 循环生成剩下的操作数
         for (int i = 0; i < operatorCount; i++) {
@@ -65,7 +65,7 @@ public class CreateFraction {
 
             // 转换当前操作数为真分数字符串并拼接表达式
             String num = math.shamToProperFraction(num_x, num_y);
-            problem.append(currentOperator).append(num);
+            expression.append(currentOperator).append(num);
         }
 
         // 计算最大公因数以简化结果
@@ -79,9 +79,9 @@ public class CreateFraction {
 
         // 将最终结果转化为真分数字符串并拼接等号
         String ans = math.shamToProperFraction(x, y);
-        problem.append("=");
+        expression.append("=");
 
         // 返回生成的表达式和结果
-        return new String[]{problem.toString(), ans};
+        return new String[]{expression.toString(), ans};
     }
 }
