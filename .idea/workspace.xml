@@ -42,36 +42,36 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.FractionTest.executor": "Run",
-    "JUnit.IntegerTest.executor": "Run",
-    "JUnit.ProducerControllerTest.executor": "Run",
-    "JUnit.arithmetic中的所有 (1).executor": "JProfiler",
-    "JUnit.arithmetic中的所有 (2).executor": "Run",
-    "JUnit.arithmetic中的所有.executor": "Coverage",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/86133/Desktop/java/ArithmeticMaker",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/86133/Desktop/java/ArithmeticMaker/src/Main.java",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "vue.rearranger.settings.migration": "true",
-    "应用程序.Main.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.FractionTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.IntegerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProducerControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.arithmetic中的所有 (1).executor&quot;: &quot;JProfiler&quot;,
+    &quot;JUnit.arithmetic中的所有 (2).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.arithmetic中的所有.executor&quot;: &quot;Coverage&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/86133/Desktop/java/ArithmeticMaker&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/86133/Desktop/java/ArithmeticMaker/src/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.Main.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\86133\Desktop\java\ArithmeticMaker" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.arithmetic中的所有">
     <configuration name="arithmetic中的所有 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="arithmetic" />
       <option name="PACKAGE_NAME" value="" />
@@ -136,7 +136,7 @@
       <workItem from="1727366289090" duration="2928000" />
       <workItem from="1727387515960" duration="9676000" />
       <workItem from="1727408658465" duration="6598000" />
-      <workItem from="1727434307761" duration="8457000" />
+      <workItem from="1727434307761" duration="8671000" />
     </task>
     <servers />
   </component>
