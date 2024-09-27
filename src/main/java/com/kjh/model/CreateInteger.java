@@ -102,84 +102,92 @@ public class CreateInteger {
      * @return 计算结果，返回整数值
      */
     public int calculator(String s) {
-        Stack<Integer> numStack = new Stack<>(); // 数字栈
-        Stack<String> operatorStack = new Stack<>(); // 操作符栈
-        HashMap<String, Integer> precedence = new HashMap<>(); // 运算符优先级
-        precedence.put("(", 0); // 左括号优先级最高
-        precedence.put("+", 1); // 四则运算优先级
-        precedence.put("-", 1);
-        precedence.put("*", 2);
-        precedence.put("÷", 2);
+        Stack<Integer> numStack = new Stack<>(); // 用于存放数字的栈
+        Stack<String> operatorStack = new Stack<>(); // 用于存放操作符的栈
+        HashMap<String, Integer> hashMap = new HashMap<>(); // 存放运算符优先级的哈希表
+        hashMap.put("(", 0); // 左括号优先级最低
+        hashMap.put("+", 1); // 加法优先级
+        hashMap.put("-", 1); // 减法优先级
+        hashMap.put("*", 2); // 乘法优先级
+        hashMap.put("÷", 2); // 除法优先级
 
-        String problem = s.replaceAll(" ", ""); // 去除空格
+        String formula = s.replaceAll(" ", ""); // 去除输入字符串中的空格
 
-        // 遍历每个字符
-        for (int i = 0; i < problem.length();) {
-            StringBuilder digit = new StringBuilder(); // 当前数字
-            char c = problem.charAt(i); // 当前字符
+        for (int i = 0; i < formula.length();) {
+            StringBuilder digit = new StringBuilder(); // 当前数字的StringBuilder
+            char c = formula.charAt(i); // 获取当前字符
 
-            // 处理数字
-            while (Character.isDigit(c)) {
-                digit.append(c); // 收集数字
+            // 处理数字，收集连续的数字字符
+            while (Character.isDigit(c)) { // 判断当前字符是否为数字
+                digit.append(c); // 将数字字符加入digit
                 i++;
-                if (i < problem.length()) {
-                    c = problem.charAt(i); // 下一个字符
+                if (i < formula.length()) {
+                    c = formula.charAt(i); // 获取下一个字符
                 } else {
                     break; // 结束循环
                 }
             }
 
             // 处理操作符
-            if (digit.length() == 0) {
+            if (digit.length() == 0) { // 如果没有数字，说明当前是操作符
                 switch (c) {
-                    case '(':
-                        operatorStack.push(String.valueOf(c)); // 压入操作符栈
+                    case '(': {
+                        operatorStack.push(String.valueOf(c)); // 压入左括号
                         break;
-                    case ')': // 计算直到遇到左括号
-                        String top = operatorStack.pop();
-                        while (!operatorStack.isEmpty() && !top.equals("(")) {
-                            int a = numStack.pop();
-                            int b = numStack.pop();
-                            int calculatedResult = performSingleOperation(b, a, top); // 计算
-                            if (calculatedResult < 0) return -1; // 错误处理
-                            numStack.push(calculatedResult);
-                            top = operatorStack.pop(); // 下一个操作符
+                    }
+                    case ')': { // 处理右括号
+                        String stmp = operatorStack.pop(); // 弹出操作符栈顶元素
+                        while (!operatorStack.isEmpty() && !stmp.equals("(")) { // 计算直到遇到左括号
+                            int a = numStack.pop(); // 弹出操作数a
+                            int b = numStack.pop(); // 弹出操作数b
+                            int result = performSingleOperation(b, a, stmp); // 进行计算
+                            if (result < 0) return -1; // 错误处理
+                            numStack.push(result); // 将结果压入数字栈
+                            stmp = operatorStack.pop(); // 更新操作符
                         }
                         break;
-                    case '=': // 计算所有操作符
-                        while (!operatorStack.isEmpty()) {
-                            String topOp = operatorStack.pop();
-                            int a = numStack.pop();
-                            int b = numStack.pop();
-                            int calculatedResult = performSingleOperation(b, a, topOp);
-                            if (calculatedResult < 0) return -1; // 错误处理
-                            numStack.push(calculatedResult);
+                    }
+                    case '=': { // 处理等号
+                        String stmp;
+                        while (!operatorStack.isEmpty()) { // 计算所有剩余操作符
+                            stmp = operatorStack.pop(); // 弹出操作符
+                            int a = numStack.pop(); // 弹出操作数a
+                            int b = numStack.pop(); // 弹出操作数b
+                            int result = performSingleOperation(b, a, stmp); // 进行计算
+                            if (result < 0) return -1; // 错误处理
+                            numStack.push(result); // 将结果压入数字栈
                         }
                         break;
-                    default: // 处理其他操作符
-                        while (!operatorStack.isEmpty()) {
-                            String topOp = operatorStack.pop();
-                            if (precedence.get(topOp) >= precedence.get(String.valueOf(c))) {
-                                int a = numStack.pop();
-                                int b = numStack.pop();
-                                int calculatedResult = performSingleOperation(b, a, topOp);
-                                if (calculatedResult < 0) return -1; // 错误处理
-                                numStack.push(calculatedResult);
+                    }
+                    default: { // 处理其他操作符
+                        String stmp;
+                        while (!operatorStack.isEmpty()) { // 当符号栈非空时
+                            stmp = operatorStack.pop(); // 获取栈顶操作符
+                            // 比较优先级
+                            if (hashMap.get(stmp) >= hashMap.get(String.valueOf(c))) {
+                                int a = numStack.pop(); // 弹出操作数a
+                                int b = numStack.pop(); // 弹出操作数b
+                                int result = performSingleOperation(b, a, stmp); // 进行计算
+                                if (result < 0) return -1; // 错误处理
+                                numStack.push(result); // 将结果压入数字栈
                             } else {
-                                operatorStack.push(topOp); // 优先级高的操作符回压
-                                operatorStack.push(String.valueOf(c)); // 压入当前操作符
+                                operatorStack.push(stmp); // 优先级高的操作符回压
                                 break; // 退出循环
                             }
                         }
-                        if (operatorStack.isEmpty()) operatorStack.push(String.valueOf(c)); // 压入操作符
+                        operatorStack.push(String.valueOf(c)); // 压入当前操作符
                         break;
+                    }
                 }
-            } else {
-                numStack.push(Integer.parseInt(digit.toString())); // 压入数字栈
+            } else { // 处理数字
+                numStack.push(Integer.valueOf(digit.toString())); // 将数字压入数字栈
+                continue; // 结束本次循环，回到for语句进行下一次循环
             }
+            i++; // 移动到下一个字符
         }
-        return numStack.pop(); // 返回结果
+        return numStack.peek(); // 返回栈顶的数字，即表达式的计算结果
     }
+
 
     /**
      * 执行单个操作的计算
