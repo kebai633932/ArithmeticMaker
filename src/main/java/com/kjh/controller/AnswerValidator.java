@@ -34,14 +34,12 @@ public class AnswerValidator {
 
             // 获取最小答案数量以避免越界
             int min = Math.min(exercises.size(), answers.size());
-
-            // 比较每道题的答案
-            for (int i = 1; i <= min; i++) {
-                // 答案应该输入Exercises.txt的题目等号后面
-                if (exercises.get(i).equals(answers.get(i))) {
-                    correctAnswers.add(String.valueOf(i)); // 添加正确题号
-                } else {
-                    incorrectAnswers.add(String.valueOf(i)); // 添加错误题号
+            int num = 1;
+            for (int i = 0; i < min; i++){
+                if (exercises.get(i).equals(answers.get(i))){
+                    correctAnswers.add(String.valueOf(num++));
+                }else {
+                    incorrectAnswers.add(String.valueOf(num++));
                 }
             }
 
